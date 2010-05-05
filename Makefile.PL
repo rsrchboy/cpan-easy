@@ -1,3 +1,6 @@
+sub githubmeta  { warn "Module::Install::GithubMeta needed!\n" }
+sub extra_tests { warn "Module::Install::ExtraTests needed!\n" }
+
 use inc::Module::Install;
 
 name     'CPAN-Easy';
@@ -7,18 +10,27 @@ license  'lgpl';
 
 requires 'autodie';
 requires 'IPC::System::Simple';
+requires 'namespace::autoclean';
 
 requires 'Moose';
+requires 'MooseX::ClassAttribute';
 requires 'MooseX::Types::Moose';
 requires 'MooseX::Types::Path::Class';
 requires 'MooseX::Types::URI';
 
 requires 'CPAN::DistnameInfo';
+requires 'File::HomeDir';
 requires 'File::Slurp';
+requires 'Path::Class';
+requires 'URI::Fetch';
 requires 'YAML::XS';
 
+extra_tests;
 test_requires 'Test::More';
+test_requires 'Test::Moose';
 
+githubmeta;
+auto_provides;
 auto_install;
 
 WriteAll;
