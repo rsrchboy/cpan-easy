@@ -120,49 +120,98 @@ sub get_info_and_dist_for {
     return ($info, $class->get_dist($info->{distinfo}->pathname));
 }
 
+sub get_dist_for { (shift->get_info_and_dist_for(shift))[1] }
+
 __PACKAGE__->meta->make_immutable;
 
 __END__
 
 =head1 NAME
 
-CPAN::Easy - The great new CPAN::Easy!
+CPAN::Easy - Easily look up and retrieve distributions from the CPAN
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
     use CPAN::Easy;
 
-    my $foo = CPAN::Easy->new();
-    ...
+    # get a tarball and info given a module in that dist...
+    my $tarball = CPAN::Easy->get_dist_for('MooseX::MarkAsMethods');
+
+    # get info about a dist given a module in that dist...
+    my $info = CPAN::Easy->get_dist('MooseX::MarkAsMethods');
+
+    # ...etc
 
 =head1 DESCRIPTION
 
+CPAN::Easy is a very small, simple module with a very small, simple goal: take
+as much pain as possible out of interfacing with the CPAN in certain ways:
 
+    * looking up what distribution a module belongs to,
+    * getting some detailed information from a distribution, and
+    * fetching tarballs.
 
-=head1 EXPORT
+To this end, we use Tatsuhiko Miyagawa's most excellent
+L<CPAN Meta DB|http://cpanmetadb.appspot.com>, as well as a number of CPAN/URI
+helper packages, and, of course, Moose.  (This is simple, not
+as-lightweight-as-humanly-possible.)
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+We also function as a class package.  That is, all attributes and "methods"
+should be interfaced to via the package name (e.g. the SYNOPSIS above).
 
-=head1 FUNCTIONS
+We die on any and all errors.
 
-=head2 function1
+=head1 ATTRIBUTES
+
+All attributes are coercive.
+
+=head2 verbose (boolean)
+
+Determines how chatty we are.  Set to 0 for no output at all; 1 for some light
+output.
+
+=head2 cpan_meta (URI)
+
+Location of the CPAN Meta DB; you almost certainly don't want to change this.
+
+Defaults to http://cpanmetadb.appspot.com/v1.0/package/.
+
+=head2 cpan_base (URI)
+
+The "base" of all tarball URIs.
+
+Defaults to http://search.cpan.org/CPAN/authors/id/.
+
+=head2 fetch_to (Path::Class::Dir)
+
+This is where CPAN::Easy will fetch any tarballs.
+
+Defaults to .cpaneasy under File::HomeDir->my_data; for all practical purposes
+on a *nix box this equates to "$ENV{HOME}/.cpaneasy/".
+
+=head1 CLASS FUNCTIONS
+
+=head2 get_info(<module name>)
+
+Given a module name, return a hash containing: distfile, version, and
+distinfo; where distinfo like "R/RO/ROODE/Readonly-1.03.tar.gz", and distinfo
+is a L<CPAN::DistnameInfo> object.
+
+=head2 get_dist_for(<module name)
+
+Given a module name, look up the dist to which it belongs and fetch it.
+
+=head2 get_info_and_dist_for(<module name>)
+
+Given a module name, look up the dist to which it belongs and fetch it.  We
+return a list of the info (L<CPAN::DistnameInfo>) and the filename (expressed
+as a L<Path::Class::File>).
+
+=head2 get_dist(<dist id>)
+
+Given a dist id (e.g. "R/RO/ROODE/Readonly-1.03.tar.gz"), fetch it.
 
 =cut
-
-sub function1 {
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
-}
 
 =head1 AUTHOR
 
@@ -170,12 +219,11 @@ Chris Weyl, C<< <cweyl at alumni.drew.edu> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-cpan-easy at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CPAN-Easy>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
+Please report any bugs or feature requests to C<bug-cpan-easy at rt.cpan.org>,
+or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CPAN-Easy>.  I will be
+notified, and then you'll automatically be notified of progress on your bug
+as I make changes.
 
 =head1 SUPPORT
 
@@ -209,6 +257,8 @@ L<http://search.cpan.org/dist/CPAN-Easy/>
 
 =head1 ACKNOWLEDGEMENTS
 
+Tatsuhiko Miyagawa's CPAN Meta DB and the cpanminus tool for which it was
+created; this package would not be possible without them.
 
 =head1 COPYRIGHT & LICENSE
 
@@ -225,10 +275,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public
-License along with this program; if not, write to the Free
-Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-02111-1307 USA.
+License along with this program; if not, write to the
 
+    Free Software Foundation, Inc.
+    59 Temple Place, Suite 330
+    Boston, MA 02111-1307 USA.
 
 =cut
-
