@@ -194,7 +194,7 @@ on a *nix box this equates to "$ENV{HOME}/.cpaneasy/".
 =head2 get_info(<module name>)
 
 Given a module name, return a hash containing: distfile, version, and
-distinfo; where distinfo like "R/RO/ROODE/Readonly-1.03.tar.gz", and distinfo
+distinfo; where distfile like "R/RO/ROODE/Readonly-1.03.tar.gz", and distinfo
 is a L<CPAN::DistnameInfo> object.
 
 =head2 get_dist_for(<module name)
