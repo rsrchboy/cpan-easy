@@ -24,9 +24,10 @@ DESCRIPTION
         * getting some detailed information from a distribution, and
         * fetching tarballs.
 
-    To this end, we use Tatsuhiko Miyagawa's most excellent <CPAN Meta DB>,
-    as well as a number of CPAN/URI helper packages, and, of course, Moose.
-    (This is simple, not as-lightweight-as-humanly-possible.)
+    To this end, we use Tatsuhiko Miyagawa's most excellent CPAN Meta DB
+    <http://cpanmetadb.appspot.com>, as well as a number of CPAN/URI helper
+    packages, and, of course, Moose. (This is simple, not
+    as-lightweight-as-humanly-possible.)
 
     We also function as a class package. That is, all attributes and
     "methods" should be interfaced to via the package name (e.g. the

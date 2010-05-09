@@ -168,7 +168,7 @@ as much pain as possible out of interfacing with the CPAN in certain ways:
     * fetching tarballs.
 
 To this end, we use Tatsuhiko Miyagawa's most excellent
-L<CPAN Meta DB|http://cpanmetadb.appspot.com>, as well as a number of CPAN/URI
+CPAN Meta DB L<http://cpanmetadb.appspot.com>, as well as a number of CPAN/URI
 helper packages, and, of course, Moose.  (This is simple, not
 as-lightweight-as-humanly-possible.)
 
