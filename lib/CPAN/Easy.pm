@@ -122,6 +122,19 @@ sub get_info_and_dist_for {
 
 sub get_dist_for { (shift->get_info_and_dist_for(shift))[1] }
 
+sub get_meta_for {
+    my ($class, $module) = @_;
+
+    my $info = $class->get_info($module);
+    my ($pathpart, $ext) = ($info->{distfile}, $info->{distinfo}->extension);
+    $pathpart =~ s/$ext$/meta/;
+    my $uri = $class->cpan_base . $pathpart;
+
+    print "Fetching $uri...\n" if $class->verbose;
+    my $rsp = URI::Fetch->fetch($uri);
+    return Load $rsp->content;
+}
+
 __PACKAGE__->meta->make_immutable;
 
 __END__
@@ -210,6 +223,11 @@ as a L<Path::Class::File>).
 =head2 get_dist(<dist id>)
 
 Given a dist id (e.g. "R/RO/ROODE/Readonly-1.03.tar.gz"), fetch it.
+
+=head2 get_meta_for(<module name>)
+
+Given a module, attempt to pull its owning distribution's META.yml file from
+the CPAN.  We return the parsed META.yml (a hashref).
 
 =cut
 
