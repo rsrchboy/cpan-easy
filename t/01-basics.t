@@ -14,10 +14,6 @@
 #
 #############################################################################
 
-=head1 NAME
-
-01-basics.t - basic tests
-
 =head1 DESCRIPTION
 
 This test exercises...
@@ -40,13 +36,12 @@ my $class = 'CPAN::Easy';
 
 meta_ok $class;
 
-has_attribute_ok $class => 'verbose';
-has_attribute_ok $class => 'cpan_base';
-has_attribute_ok $class => 'cpan_meta';
-has_attribute_ok $class => 'fetch_to';
-has_attribute_ok $class => '_dists';
-#has_attribute_ok $class => '';
-#has_attribute_ok $class => '';
+# hmm.
+#has_attribute_ok $class => 'verbose';
+#has_attribute_ok $class => 'cpan_base';
+#has_attribute_ok $class => 'cpan_meta';
+#has_attribute_ok $class => 'fetch_to';
+#has_attribute_ok $class => '_dists';
 
 ok $class->can('get_dist') => 'can get_dist()';
 ok $class->can('has_dist') => 'can has_dist()';
@@ -59,27 +54,4 @@ __END__
 
 Chris Weyl  <cweyl@alumni.drew.edu>
 
-=head1 LICENSE AND COPYRIGHT
-
-Copyright (c) 2010  <cweyl@alumni.drew.edu>
-
-This library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public
-License as published by the Free Software Foundation; either
-version 2.1 of the License, or (at your option) any later version.
-
-This library is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-     Lesser General Public License for more details.
-
-     You should have received a copy of the GNU Lesser General Public
-     License along with this library; if not, write to the
-
-     Free Software Foundation, Inc.
-     59 Temple Place, Suite 330
-     Boston, MA  02111-1307  USA
-
-     =cut
-
-
+=cut
