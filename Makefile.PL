@@ -25,6 +25,9 @@ requires 'Path::Class';
 requires 'URI::Fetch';
 requires 'YAML::XS';
 
+readme_from 'lib/CPAN/Easy.pm';
+readme_markdown_from 'lib/CPAN/Easy.pm';
+
 extra_tests;
 test_requires 'Test::More';
 test_requires 'Test::Moose';

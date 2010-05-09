@@ -1,0 +1,135 @@
+NAME
+    CPAN::Easy - Easily look up and retrieve distributions from the CPAN
+
+SYNOPSIS
+        use CPAN::Easy;
+
+        # get a tarball and info given a module in that dist...
+        my $tarball = CPAN::Easy->get_dist_for('MooseX::MarkAsMethods');
+
+        # get info about a dist given a module in that dist...
+        my $info = CPAN::Easy->get_dist('MooseX::MarkAsMethods');
+
+        # ...etc
+
+DESCRIPTION
+    CPAN::Easy is a very small, simple module with a very small, simple
+    goal: take as much pain as possible out of interfacing with the CPAN in
+    certain ways:
+
+        * looking up what distribution a module belongs to,
+        * getting some detailed information from a distribution, and
+        * fetching tarballs.
+
+    To this end, we use Tatsuhiko Miyagawa's most excellent <CPAN Meta DB>,
+    as well as a number of CPAN/URI helper packages, and, of course, Moose.
+    (This is simple, not as-lightweight-as-humanly-possible.)
+
+    We also function as a class package. That is, all attributes and
+    "methods" should be interfaced to via the package name (e.g. the
+    SYNOPSIS above).
+
+    We die on any and all errors.
+
+ATTRIBUTES
+    All attributes are coercive.
+
+  verbose (boolean)
+    Determines how chatty we are. Set to 0 for no output at all; 1 for some
+    light output.
+
+  cpan_meta (URI)
+    Location of the CPAN Meta DB; you almost certainly don't want to change
+    this.
+
+    Defaults to http://cpanmetadb.appspot.com/v1.0/package/.
+
+  cpan_base (URI)
+    The "base" of all tarball URIs.
+
+    Defaults to http://search.cpan.org/CPAN/authors/id/.
+
+  fetch_to (Path::Class::Dir)
+    This is where CPAN::Easy will fetch any tarballs.
+
+    Defaults to .cpaneasy under File::HomeDir->my_data; for all practical
+    purposes on a *nix box this equates to "$ENV{HOME}/.cpaneasy/".
+
+CLASS FUNCTIONS
+  get_info(<module name>)
+    Given a module name, return a hash containing: distfile, version, and
+    distinfo; where distfile like "R/RO/ROODE/Readonly-1.03.tar.gz", and
+    distinfo is a CPAN::DistnameInfo object.
+
+  get_dist_for(<module name)
+    Given a module name, look up the dist to which it belongs and fetch it.
+
+  get_info_and_dist_for(<module name>)
+    Given a module name, look up the dist to which it belongs and fetch it.
+    We return a list of the info (CPAN::DistnameInfo) and the filename
+    (expressed as a Path::Class::File).
+
+  get_dist(<dist id>)
+    Given a dist id (e.g. "R/RO/ROODE/Readonly-1.03.tar.gz"), fetch it.
+
+  get_meta_for(<module name>)
+    Given a module, attempt to pull its owning distribution's META.yml file
+    from the CPAN. We return the parsed META.yml (a hashref).
+
+AUTHOR
+    Chris Weyl, "<cweyl at alumni.drew.edu>"
+
+BUGS
+    Please report any bugs or feature requests to "bug-cpan-easy at
+    rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CPAN-Easy>. I will be
+    notified, and then you'll automatically be notified of progress on your
+    bug as I make changes.
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+        perldoc CPAN::Easy
+
+    You can also look for information at:
+
+    *   RT: CPAN's request tracker
+
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=CPAN-Easy>
+
+    *   AnnoCPAN: Annotated CPAN documentation
+
+        <http://annocpan.org/dist/CPAN-Easy>
+
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/CPAN-Easy>
+
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/CPAN-Easy/>
+
+ACKNOWLEDGEMENTS
+    Tatsuhiko Miyagawa's CPAN Meta DB and the cpanminus tool for which it
+    was created; this package would not be possible without them.
+
+COPYRIGHT & LICENSE
+    Copyright 2010 Chris Weyl.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation; either version 2.1 of the License, or (at
+    your option) any later version.
+
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
+    General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program; if not, write to the
+
+        Free Software Foundation, Inc.
+        59 Temple Place, Suite 330
+        Boston, MA 02111-1307 USA.
+

@@ -12,3 +12,4 @@ META.yml
 *.bak
 *.old
 *.orig
+inc/
