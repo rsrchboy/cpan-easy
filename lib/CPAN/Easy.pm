@@ -157,6 +157,9 @@ CPAN::Easy - Easily look up and retrieve distributions from the CPAN
 
 =head1 DESCRIPTION
 
+B<This is VERY early code.  Its interface is liable to change until the first
+non-developer release hits the CPAN.>
+
 CPAN::Easy is a very small, simple module with a very small, simple goal: take
 as much pain as possible out of interfacing with the CPAN in certain ways:
 
