@@ -16,7 +16,7 @@ use URI::Fetch;
 use Path::Class;
 use YAML::XS;
 
-our $VERSION = '0.001_01';
+our $VERSION = '0.001';
 
 # Objectives:
 # * Easy version / dist matching from a module
