@@ -1,5 +1,7 @@
 package CPAN::Easy;
 
+# ABSTRACT: Easily look up and retrieve distributions from the CPAN
+
 use Moose;
 use namespace::autoclean;
 use MooseX::ClassAttribute;
@@ -15,8 +17,6 @@ use File::Slurp;
 use URI::Fetch;
 use Path::Class;
 use YAML::XS;
-
-our $VERSION = '0.001';
 
 # Objectives:
 # * Easy version / dist matching from a module
@@ -139,10 +139,6 @@ __PACKAGE__->meta->make_immutable;
 
 __END__
 
-=head1 NAME
-
-CPAN::Easy - Easily look up and retrieve distributions from the CPAN
-
 =head1 SYNOPSIS
 
     use CPAN::Easy;
@@ -246,60 +242,9 @@ L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CPAN-Easy>.  I will be
 notified, and then you'll automatically be notified of progress on your bug
 as I make changes.
 
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc CPAN::Easy
-
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=CPAN-Easy>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/CPAN-Easy>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/CPAN-Easy>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/CPAN-Easy/>
-
-=back
-
-
 =head1 ACKNOWLEDGEMENTS
 
 Tatsuhiko Miyagawa's CPAN Meta DB and the cpanminus tool for which it was
 created; this package would not be possible without them.
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2010 Chris Weyl.
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public
-License as published by the Free Software Foundation; either
-version 2.1 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public
-License along with this program; if not, write to the
-
-    Free Software Foundation, Inc.
-    59 Temple Place, Suite 330
-    Boston, MA 02111-1307 USA.
 
 =cut
