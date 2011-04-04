@@ -13,3 +13,6 @@ META.yml
 *.old
 *.orig
 inc/
+.build/
+releases/
+.*.swp
